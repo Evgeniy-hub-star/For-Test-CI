@@ -3,21 +3,29 @@ from flask import request, jsonify
 
 app = Flask(__name__)
 
-def validate_post_data(data: dict) -> bool:
+@app.route('/calc', methods=['GET', 'POST'])
+def calc():
+    #Получаем параметры из URL
+    a = request.args.get('a', type=float)
+    b = request.args.get('b', type=float)
+    op = request.args.get('op', default='add')
 
-#GET
-@app.route('/', methods=['GET'])
-def hello():
-    return 'Hello, world'
+    # Простейшие операции
+    if op == 'add':
+        result = a + b
+    elif op == 'sub':
+        result = a - b
+    elif op == 'mul':
+        result = a * b
+    elif op == 'div':
+        if b == 0:
+            return "Ошибка: деление на ноль!"
+        result = a / b
+    else:
+        return "Ошибка: неизвестная операция!"
 
-@app.route('/api', methods=['GET', 'POST'])
-def api():
-    if request.method == 'GET':
-        return jsonify({'status' : 'test'})
-    elif request.method == 'POST':
-        return jsonify ({'status' : 'OK'})
+    return f"Результат: {result}"
 
-
-if __name__== '__main__':
-    app.run(debug=True, port=8080)
+if __name__ == '__main__':
+    app.run(debug=True, host='127.0.0.1', port=8000)
 
