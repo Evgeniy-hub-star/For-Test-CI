@@ -6,6 +6,9 @@ from app import app
 import app as tested_app
 
 class FlaskAppTests(unittest.TestCase):
+    def setUp(self):
+        tested_app.app.config['TESTING'] = True
+        self.app = tested_app.app.test_client()
 
     def setUp(self):
         tested_app.app.config['TESTING'] = True
