@@ -6,7 +6,7 @@ import app as tested_app
 
 class FlaskAppTests(unittest.TestCase):
     def test_success_add(self):
-        r = self.app.get('calc?a=9&b=5&op=sub')
+        r = self.app.get('calc?a=9&b=5&op=add')
         self.assertEqual(r.status_code, 200)
         self.assertEqual(r.data, b'5.0')
 
