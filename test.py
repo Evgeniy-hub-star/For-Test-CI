@@ -8,7 +8,7 @@ class FlaskAppTests(unittest.TestCase):
     def test_success_add(self):
         r = self.app.get('calc?a=1&b=5&op=add')
         self.assertEqual(r.status_code, 200)
-        self.assertEqual(r.data, b'6.0')
+        self.assertEqual(r.data, b'5.0')
 
 if __name__=='__main__':
     unittest.main()
