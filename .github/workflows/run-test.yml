@@ -20,10 +20,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install coverage
-      - name: Run tests with coverage
-        run: |
-          export PYTHONPATH=src
-          coverage run -m unittest src.tests
-      - name: Show coverage report
-        run: coverage report
+      - name: Run tests 
+        run: python -m pytest
+          
           
