@@ -2,19 +2,16 @@ import unittest
 import sys
 import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+import pytest
 from app import app
-import app as tested_app
+#import app as tested_app
 
 class FlaskAppTests(unittest.TestCase):
     def setUp(self):
-        tested_app.app.config['TESTING'] = True
-        self.app = tested_app.app.test_client()
+        #tested_app.app.config['TESTING'] = True
+        self.app =app.test_client()
+        self.app.testing = True
 
-    def setUp(self):
-        tested_app.app.config['TESTING'] = True
-        self.app = tested_app.app.test_client()
-
-class FlaskAppTests(unittest.TestCase):
     def test_success_add(self):
         r = self.app.get('/calc?a=9&b=5&op=add')
         self.assertEqual(r.status_code, 200)
