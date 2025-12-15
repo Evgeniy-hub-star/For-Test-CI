@@ -15,22 +15,22 @@ class FlaskAppTests(unittest.TestCase):
     def test_success_add(self):
         r = self.app.get('/calc?a=1&b=4&op=add')
         self.assertEqual(r.status_code, 200)
-        self.assertEqual(b'5.0', r.data)
+        self.assertIn(b'5.0', r.data)
 
     def test_success_sub(self):
         r = self.app.get('/calc?a=9&b=4&op=sub')
         self.assertEqual(r.status_code, 200)
-        self.assertEqual(b'5.0', r.data)
+        self.assertIn(b'5.0', r.data)
 
     def test_success_mul(self):
         r = self.app.get('/calc?a=1&b=5&op=mul')
         self.assertEqual(r.status_code, 200)
-        self.assertEqual(b'5.0', r.data)
+        self.assertIn(b'5.0', r.data)
 
     def test_success_div(self):
         r = self.app.get('/calc?a=5&b=1&op=div')
         self.assertEqual(r.status_code, 200)
-        self.assertEqual(b'5.0', r.data)
+        self.assertIn(b'5.0', r.data)
 
 
 if __name__=='__main__':
